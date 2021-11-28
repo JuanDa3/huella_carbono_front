@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logoUniversidad from "../images/logoUniversidad.png";
 import Button from "react-bootstrap/Button";
+import UserPage from "./UserPage";
 
 function InitialMenu(props) {
   const [disabled, setDisabled] = useState(false);
-  const onClick = () => setDisabled(true);
-
-  console.log(props.disable);
+  const InitialMenu = (props) => <span>hola</span>;
 
   return (
     <>
@@ -30,27 +29,27 @@ function InitialMenu(props) {
                 id="basic-nav-dropdown"
                 style={{ visibility: props.disable }}
               >
-                <NavDropdown.Item href="#action/3.1">Gas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item className="gas" href="/gas">
+                  Gas
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/energia">
                   Energia electrica
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Agua</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Papel</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Gasolina</NavDropdown.Item>
+                <NavDropdown.Item href="/agua">Agua</NavDropdown.Item>
+                <NavDropdown.Item href="/papel">Papel</NavDropdown.Item>
+                <NavDropdown.Item href="/gasolina">Gasolina</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
                 title="Residuos"
                 id="basic-nav-dropdown"
                 style={{ visibility: props.disable }}
               >
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item href="/peligrosos">
                   Peligrosos
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Solidos</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Organicos
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/solidos">Solidos</NavDropdown.Item>
+                <NavDropdown.Item href="/organicos">Organicos</NavDropdown.Item>
+                <NavDropdown.Item href="/aprovechados">
                   Aprovechados
                 </NavDropdown.Item>
               </NavDropdown>
