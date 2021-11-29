@@ -1,0 +1,15 @@
+.menu{
+    background-color: rgba(255, 255, 255, 0.507);
+    height: 130px;
+    z-index: 10;
+}
+
+.login-button{
+    background-color: rgb(106,211,77);
+    width: 140px;
+    height: 45px;
+    border-radius: 20px;
+    color: black;
+    border: none;
+    font-weight: bold;
+}

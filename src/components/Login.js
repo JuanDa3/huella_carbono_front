@@ -4,23 +4,32 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
 import { Col, Form } from "react-bootstrap";
-import { Axios } from "axios";
+import axios from "axios";
+
+const baseURL = "http://localhost:8000/prove-from-react/";
 
 function Login() {
-  const url = "https://main.d3nc7if2jw05q3.amplifyapp.com/probe";
+  const [post, setPost] = React.useState(null);
   const [data, setData] = useState({
     email: "",
     pass: "",
   });
 
-  function submit(e) {
-    e.preventDefault();
-    Axios.post(url, {
-      mail: data.email,
-      password: data.pass,
-    }).then((res) => {
-      console.log(res.data);
+  React.useEffect(() => {
+    axios.get(`${baseURL}/1`).then((response) => {
+      setPost(response.data);
     });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        title: "prueba del post gg",
+        body: "This is a new post.",
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
   }
 
   function handle(e) {
@@ -42,36 +51,34 @@ function Login() {
         </div>
         <div className="col2 w-25 p-5 m-auto d-flex flex-column">
           <h1>Iniciar Sesión</h1>
-          <Form onSubmit={(e) => submit(e)}>
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label column sm="2">
-                Email
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  onChange={(e) => handle(e)}
-                  plaintext
-                  placeholder="Email"
-                />
-              </Col>
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="pass">
-              <Form.Label column sm="2">
-                Password
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  onChange={(e) => handle(e)}
-                  type="password"
-                  placeholder="Password"
-                />
-              </Col>
-            </Form.Group>
-            <Link to="/userpage">
-              <Button variant="primary">Iniciar sesión</Button>{" "}
-            </Link>
-          </Form>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label column sm="2">
+              Email
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                onChange={(e) => handle(e)}
+                plaintext
+                placeholder="Email"
+              />
+            </Col>
+            <Form.Label column sm="2">
+              Password
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                onChange={(e) => handle(e)}
+                type="password"
+                placeholder="Password"
+              />
+            </Col>
+            <button onClick={createPost}>Create Post</button>
+            <Button onClick={createPost} variant="primary">
+              Iniciar sesión
+            </Button>{" "}
+          </Form.Group>
+          <Link to=""></Link>
         </div>
       </div>
     </>

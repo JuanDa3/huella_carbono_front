@@ -13,6 +13,7 @@ import Aprovechados from "./components/Aprovechados";
 import Agua from "./components/Agua";
 import Energia from "./components/Energia";
 import Gasolina from "./components/Gasolina";
+import Prove from "./components/prove";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/agua" element={<Agua />} />
           <Route path="/energia" element={<Energia />} />
           <Route path="/gasolina" element={<Gasolina />} />
+          <Route path="/prove" element={<Prove />} />
         </Routes>
       </div>
     </Router>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logoUniversidad from "../images/logoUniversidad.png";
 import Button from "react-bootstrap/Button";
-import UserPage from "./UserPage";
+import initialMenu from "../css/initialMenu.css";
 
 function InitialMenu(props) {
   const [disabled, setDisabled] = useState(false);
@@ -10,13 +10,13 @@ function InitialMenu(props) {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar className="menu" expand="lg">
         <Container>
           <Navbar.Brand href="/">
             <img
               src={logoUniversidad}
-              width="55"
-              height="60"
+              width="80"
+              height="90"
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
             />
@@ -55,7 +55,9 @@ function InitialMenu(props) {
               </NavDropdown>
             </Nav>
             <a href="login" style={{ visibility: props.log }}>
-              <Button variant="primary">login</Button>{" "}
+              <Button className="login-button" variant="primary">
+                Login
+              </Button>{" "}
             </a>
           </Navbar.Collapse>
         </Container>
