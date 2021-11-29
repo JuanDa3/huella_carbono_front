@@ -22,7 +22,11 @@ function Home() {
             <h3 className="">Beneficios de calcular la huella de carbono</h3>
             <div className="content-cards">
               <div className="card">
-                <img src={bombillos} alt="" className="m-auto" />
+                <img
+                  src="https://drive.google.com/file/d/1iJOUmktSuf1tGLcOg7c1wMsh52JXmJil/view?usp=sharing"
+                  alt=""
+                  className="m-auto"
+                />
                 <p>
                   Generar diversas estrategias que permitan un ahorro de energía
                   eficaz y reducción de costos que pueden ir destinados a otro

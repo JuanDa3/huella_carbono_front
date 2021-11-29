@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
 import { Col, Form } from "react-bootstrap";
 import axios from "axios";
+import login from "../css/login.css";
 
 const baseURL = "http://localhost:8000/prove-from-react/";
 
@@ -41,14 +42,7 @@ function Login() {
   return (
     <>
       <InitialMenu disable={"hidden"} />
-      <div className="mt-5 w-100 h-100 d-flex">
-        <div className="col1 w-50">
-          <img
-            src={banner1}
-            className="w-100 h-100"
-            alt="React Bootstrap logo"
-          />
-        </div>
+      <div className="mt-5 w-100 h-100 d-flex content-login">
         <div className="col2 w-25 p-5 m-auto d-flex flex-column">
           <h1>Iniciar Sesión</h1>
 
