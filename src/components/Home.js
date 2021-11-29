@@ -23,7 +23,7 @@ function Home() {
             <div className="content-cards">
               <div className="card">
                 <img
-                  src="https://drive.google.com/file/d/1iJOUmktSuf1tGLcOg7c1wMsh52JXmJil/view?usp=sharing"
+                  src="https://tfsenergia.com/wp-content/uploads/2021/07/energiasolar-.jpeg"
                   alt=""
                   className="m-auto"
                 />
