@@ -34,14 +34,22 @@ function Home() {
                 </p>
               </div>
               <div className="card">
-                <img className="m-auto" src={huella4} alt="" />
+                <img
+                  className="m-auto"
+                  src="https://d11o8pt3cttu38.cloudfront.net/wp-content/uploads/sites/7/2018/12/.ecologia-digital-1.jpg"
+                  alt=""
+                />
                 <p>
                   Lograr una mayor comprensión del impacto ambiental generado a
                   lo largo de diversas actividades realizadas dentro del campus.
                 </p>
               </div>
               <div className="card">
-                <img className="m-auto" src={huella6} alt="" />
+                <img
+                  className="m-auto"
+                  src="https://www.betranslated.es/wp-content/uploads/2021/01/Traduccion-cientifica-energia-renovable.jpg"
+                  alt=""
+                />
                 <p>
                   A partir de los datos expuestos al publico, se crea conciencia
                   ambiental hacia todas las personas que hacen uso de las

@@ -41,38 +41,29 @@ function Login() {
   }
   return (
     <>
-      <InitialMenu disable={"hidden"} />
-      <div className="mt-5 w-100 h-100 d-flex content-login">
-        <div className="col2 w-25 p-5 m-auto d-flex flex-column">
-          <h1>Iniciar Sesión</h1>
-
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label column sm="2">
-              Email
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                onChange={(e) => handle(e)}
-                plaintext
-                placeholder="Email"
-              />
-            </Col>
-            <Form.Label column sm="2">
-              Password
-            </Form.Label>
-            <Col sm="10">
+      <div className="content-login">
+        <InitialMenu disable={"hidden"} />
+        <div className="mt-5 w-100 d-flex justify-content-center">
+          <div className=" d-flex flex-column align-items-center login-window">
+            <h3>Iniciar Sesión</h3>
+            <Form.Group controlId="email">
+              <Form.Label style={{ color: "black" }}>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label style={{ color: "black" }} column sm="2">
+                Password
+              </Form.Label>
               <Form.Control
                 onChange={(e) => handle(e)}
                 type="password"
                 placeholder="Password"
               />
-            </Col>
-            <button onClick={createPost}>Create Post</button>
-            <Button onClick={createPost} variant="primary">
-              Iniciar sesión
-            </Button>{" "}
-          </Form.Group>
-          <Link to=""></Link>
+              <a href="/userpage">
+                <Button className="mt-3" onClick={createPost} variant="primary">
+                  Iniciar sesión
+                </Button>{" "}
+              </a>
+            </Form.Group>
+          </div>
         </div>
       </div>
     </>

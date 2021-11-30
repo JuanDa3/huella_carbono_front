@@ -1,0 +1,31 @@
+.main{
+    background-image: url("https://www.oecd.org/media/oecdorg/directorates/environmentdirectorate/2020-2/leaves-5308582_1920.jpg");
+    background-size: cover;
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
+
+label{
+    color: white;
+    font-size: 19px;
+    margin: 10px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.button-enviar{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.result{
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
