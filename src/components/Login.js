@@ -39,6 +39,7 @@ function Login() {
     setData(newData);
     console.log(newData);
   }
+
   return (
     <>
       <div className="content-login">
@@ -46,15 +47,21 @@ function Login() {
         <div className="mt-5 w-100 d-flex justify-content-center">
           <div className=" d-flex flex-column align-items-center login-window">
             <h3>Iniciar Sesión</h3>
-            <Form.Group controlId="email">
+            <Form.Group>
               <Form.Label style={{ color: "black" }}>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                onChange={(e) => handle(e)}
+                type="email"
+                id="email"
+                placeholder="Enter email"
+              />
               <Form.Label style={{ color: "black" }} column sm="2">
                 Password
               </Form.Label>
               <Form.Control
                 onChange={(e) => handle(e)}
                 type="password"
+                id="pass"
                 placeholder="Password"
               />
               <a href="/userpage">

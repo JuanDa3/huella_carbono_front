@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
@@ -6,10 +6,27 @@ import calculates from "../css/calculates.css";
 import axios from "axios";
 import formula from "../images/formula.PNG";
 
-const baseURL = "http://localhost:8080/residuo/lista-residuos";
+// const baseURL = "http://localhost:8080/residuo/lista-residuos";
+
+const baseURL = "http://localhost:8080/consumo/calculo";
 
 function Gas() {
-  const [post, setPost] = React.useState(null);
+  const [calculo, setCalculo] = useState("Resultado");
+  const [data, setData] = useState({
+    cantidad: "",
+    tipoConsumo: "GAS",
+    unidadMedida: "Lb/mes",
+    factorEmision: "factor",
+    fuente: "",
+    observaciones: "",
+  });
+
+  function handle(e) {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+    console.log(newData);
+  }
 
   async function createPost() {
     // Simple POST request with a JSON body using axios
@@ -19,15 +36,35 @@ function Gas() {
       .then((response) => this.setState({ articleId: response.data.id }));
   }
 
+  // async function createPost2() {
+  //   axios({
+  //     method: "post",
+  //     url: baseURL,
+  //   });
+  // }
+
   async function createPost2() {
-    axios({
-      method: "post",
-      url: baseURL,
-      data: {
-        firstName: "Fred",
-        lastName: "Flintstone",
+    const response = await fetch(baseURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        //"Access-Control-Allow-Origin": "*",
       },
-    });
+      body: JSON.stringify({
+        tipoConsumo: "GAS",
+        cantidad: 123.0,
+        unidadMedida: "Lb/mes",
+        fuente: "Activos fijos",
+        observaciones: "Promedio anual (2017-2021)",
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setCalculo(response);
+      });
   }
 
   async function getArray() {
@@ -49,34 +86,48 @@ function Gas() {
           <Form.Group className=" container mt-5">
             <div className="h-100 d-flex flex-column">
               <label htmlFor="">Cantidad Consumo</label>
-              <input type="text" placeholder="Ej:80" />
+              <input
+                onChange={(e) => handle(e)}
+                id="cantidad"
+                type="text"
+                placeholder="Ej:80"
+              />
 
               <label htmlFor="">Unidad de medida</label>
               <input type="text" placeholder="Ej: Kw/h" readOnly />
 
               <label htmlFor="">Factor de emisión</label>
-              <input type="text" placeholder="Ej:80" />
+              <input type="text" readOnly placeholder="Ej:80" />
 
               <label htmlFor="">Fuente</label>
               <FloatingLabel controlId="floatingSelect">
-                <Form.Select aria-label="Floating label select example">
+                <Form.Select
+                  name="fuente"
+                  onChange={(e) => handle(e)}
+                  id="fuente"
+                  aria-label="Floating label select example"
+                >
                   <option>Seleccione la fuente</option>
-                  <option value="1">Activos fijos</option>
-                  <option value="2">Sistema de gestíon ambiental</option>
-                  <option value="3">Vicerrectoria</option>
+                  <option value="Activos fijos">Activos fijos</option>
+                  <option value="Sistema de gestion ambiental">
+                    Sistema de gestíon ambiental
+                  </option>
+                  <option value="vicerrectoria">Vicerrectoria</option>
                 </Form.Select>
               </FloatingLabel>
 
               <label htmlFor="">Observaciones</label>
-              <FloatingLabel controlId="floatingTextarea2" label="Comments">
+              <FloatingLabel label="Comments">
                 <Form.Control
                   as="textarea"
+                  id="observaciones"
+                  onChange={(e) => handle(e)}
                   placeholder="Leave a comment here"
                   style={{ height: "100px" }}
                 />
               </FloatingLabel>
             </div>
-            <Button onClick={getArray} className="button-enviar" type="submit">
+            <Button onClick={createPost2} className="button-enviar">
               Registrar
             </Button>
           </Form.Group>
@@ -91,6 +142,8 @@ function Gas() {
               className=""
               type="text"
               placeholder="Resultado"
+              readOnly
+              value={calculo}
             />
           </div>
         </div>
