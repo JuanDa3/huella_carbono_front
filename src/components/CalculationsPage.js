@@ -15,7 +15,7 @@ function CalculationsPage(props) {
             <input type="text" placeholder="Ej:80" />
 
             <label htmlFor="">Unidad de medida</label>
-            <input type="text" placeholder="Ej: Kw/h" readOnly />
+            <input type="number" placeholder="Ej: Kw/h" readOnly />
 
             <label htmlFor="">Factor de emisión</label>
             <input type="text" placeholder="Ej:80" />

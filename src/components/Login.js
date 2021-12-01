@@ -3,41 +3,41 @@ import banner1 from "../images/banner1.PNG";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
-import { Col, Form } from "react-bootstrap";
-import axios from "axios";
+import { Form } from "react-bootstrap";
+//import axios from "axios";
 import login from "../css/login.css";
+//import { useAuth0 } from "@auth0/auth0-react";
 
-const baseURL = "http://localhost:8000/prove-from-react/";
+const baseURL = "";
 
 function Login() {
-  const [post, setPost] = React.useState(null);
+  //const { loginWithRedirect } = useAuth0();
+  //const { logout } = useAuth0();
+
+  const [sesion, setSesion] = React.useState("/login");
   const [data, setData] = useState({
     email: "",
     pass: "",
   });
 
-  React.useEffect(() => {
-    axios.get(`${baseURL}/1`).then((response) => {
-      setPost(response.data);
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   axios.get(`${baseURL}/1`).then((response) => {
+  //     setPost(response.data);
+  //   });
+  // }, []);
 
-  function createPost() {
-    axios
-      .post(baseURL, {
-        title: "prueba del post gg",
-        body: "This is a new post.",
-      })
-      .then((response) => {
-        setPost(response.data);
-      });
+  function validarUsuario() {
+    if (data.email == "demo@uqvirtual.edu.co" && data.pass == "123") {
+      setSesion("/userpage");
+    } else {
+      alert("el usuario no existe");
+    }
   }
 
   function handle(e) {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData);
   }
 
   return (
@@ -64,11 +64,21 @@ function Login() {
                 id="pass"
                 placeholder="Password"
               />
-              <a href="/userpage">
-                <Button className="mt-3" onClick={createPost} variant="primary">
-                  Iniciar sesión
-                </Button>{" "}
-              </a>
+              <Button
+                onClick={() => validarUsuario()}
+                className="mt-3"
+                variant="primary"
+                href={sesion}
+              >
+                Iniciar sesión
+              </Button>{" "}
+              {/* <Button
+                onClick={() => logout()}
+                className="mt-3"
+                variant="primary"
+              >
+                Logout
+              </Button>{" "} */}
             </Form.Group>
           </div>
         </div>

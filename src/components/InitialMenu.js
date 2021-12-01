@@ -36,7 +36,15 @@ function InitialMenu(props) {
                   Energia electrica
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/agua">Agua</NavDropdown.Item>
-                <NavDropdown.Item href="/papel">Papel</NavDropdown.Item>
+                <NavDropdown.Item href="/papelcarta">
+                  Papel Carta
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/papeloficio">
+                  Papel Oficio
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/papelcarta">
+                  Papel Oficio
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/gasolina">Gasolina</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown

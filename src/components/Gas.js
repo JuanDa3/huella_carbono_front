@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
+import { FloatingLabel, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
-import calculates from "../css/calculates.css";
-import axios from "axios";
+//import calculates from "../css/calculates.css";
 import formula from "../images/formula.PNG";
-
-// const baseURL = "http://localhost:8080/residuo/lista-residuos";
 
 const baseURL = "http://localhost:8080/consumo/calculo";
 
@@ -16,7 +13,6 @@ function Gas() {
     cantidad: "",
     tipoConsumo: "GAS",
     unidadMedida: "Lb/mes",
-    factorEmision: "factor",
     fuente: "",
     observaciones: "",
   });
@@ -29,21 +25,6 @@ function Gas() {
   }
 
   async function createPost() {
-    // Simple POST request with a JSON body using axios
-    const article = { title: "React POST Request Example" };
-    await axios
-      .get(baseURL)
-      .then((response) => this.setState({ articleId: response.data.id }));
-  }
-
-  // async function createPost2() {
-  //   axios({
-  //     method: "post",
-  //     url: baseURL,
-  //   });
-  // }
-
-  async function createPost2() {
     const response = await fetch(baseURL, {
       method: "POST",
       mode: "cors",
@@ -52,29 +33,14 @@ function Gas() {
         "Content-Type": "application/json",
         //"Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify({
-        tipoConsumo: "GAS",
-        cantidad: 123.0,
-        unidadMedida: "Lb/mes",
-        fuente: "Activos fijos",
-        observaciones: "Promedio anual (2017-2021)",
-      }),
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
         setCalculo(response);
+        alert("Calculo realizado satisfactoriamente");
       });
-  }
-
-  async function getArray() {
-    axios({
-      method: "get",
-      url: baseURL,
-      responseType: "stream",
-    }).then(function (response) {
-      console.log(response);
-    });
   }
 
   return (
@@ -82,27 +48,24 @@ function Gas() {
       <InitialMenu disable={"visible"} log={"hidden"} />
       <div className="d-flex">
         <div className="w-50">
-          <h1>Gas</h1>
-          <Form.Group className=" container mt-5">
-            <div className="h-100 d-flex flex-column">
+          <h1>Consumo de Gas</h1>
+          <Form.Group className="container mt-5">
+            <div className="h-100 d-flex flex-column container-form">
               <label htmlFor="">Cantidad Consumo</label>
-              <input
-                onChange={(e) => handle(e)}
+
+              <Form.Control
+                style={{ textAlign: "center" }}
                 id="cantidad"
-                type="text"
+                onChange={(e) => handle(e)}
+                type="number"
                 placeholder="Ej:80"
               />
-
-              <label htmlFor="">Unidad de medida</label>
-              <input type="text" placeholder="Ej: Kw/h" readOnly />
-
-              <label htmlFor="">Factor de emisión</label>
-              <input type="text" readOnly placeholder="Ej:80" />
 
               <label htmlFor="">Fuente</label>
               <FloatingLabel controlId="floatingSelect">
                 <Form.Select
                   name="fuente"
+                  style={{ textAlign: "center" }}
                   onChange={(e) => handle(e)}
                   id="fuente"
                   aria-label="Floating label select example"
@@ -116,18 +79,39 @@ function Gas() {
                 </Form.Select>
               </FloatingLabel>
 
+              <label htmlFor="">Unidad de medida</label>
+
+              <Form.Control
+                style={{ textAlign: "center" }}
+                readOnly
+                type="text"
+                value="Lb/mes"
+              />
+
+              <label htmlFor="">Factor de emisión</label>
+
+              <Form.Control
+                style={{ textAlign: "center" }}
+                readOnly
+                type="text"
+                value="kW"
+              />
+
               <label htmlFor="">Observaciones</label>
               <FloatingLabel label="Comments">
+                <label htmlFor="">Cantidad Consumo</label>
+
                 <Form.Control
-                  as="textarea"
-                  id="observaciones"
                   onChange={(e) => handle(e)}
-                  placeholder="Leave a comment here"
-                  style={{ height: "100px" }}
+                  style={{ textAlign: "center" }}
+                  id="observaciones"
+                  style={{ height: "150px" }}
+                  type="textarea"
+                  placeholder="Aqui van las observaciones"
                 />
               </FloatingLabel>
             </div>
-            <Button onClick={createPost2} className="button-enviar">
+            <Button onClick={createPost} className="button-enviar">
               Registrar
             </Button>
           </Form.Group>
@@ -135,10 +119,9 @@ function Gas() {
         <div className="w-50 d-flex flex-column align-items-center justify-content-center">
           <img src={formula} width="80%" alt="" />
           <div className="result">
-            <h3>Resultado</h3>
-            <p>Emision</p>
+            <h3>Resultado Emisión</h3>
             <Form.Control
-              style={{ width: "530px" }}
+              style={{ width: "530px", textAlign: "center" }}
               className=""
               type="text"
               placeholder="Resultado"

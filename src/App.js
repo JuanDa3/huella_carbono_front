@@ -1,13 +1,13 @@
 import "./App.css";
 import Home from "./components/Home";
-import InitialMenu from "./components/InitialMenu";
 import Login from "./components/Login";
 import Gas from "./components/Gas";
 import UserPage from "./components/UserPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Solidos from "./components/Solidos";
 import Peligrosos from "./components/Peligrosos";
-import Papel from "./components/Papel";
+import PapelCarta from "./components/PapelCarta";
+import PapelOficio from "./components/PapelOficio";
 import Organicos from "./components/Organicos";
 import Aprovechados from "./components/Aprovechados";
 import Agua from "./components/Agua";
@@ -26,7 +26,8 @@ function App() {
           <Route path="/gas" element={<Gas />} />
           <Route path="/solidos" element={<Solidos />} />
           <Route path="/peligrosos" element={<Peligrosos />} />
-          <Route path="/papel" element={<Papel />} />
+          <Route path="/papelcarta" element={<PapelCarta />} />
+          <Route path="/papeloficio" element={<PapelOficio />} />
           <Route path="/organicos" element={<Organicos />} />
           <Route path="/aprovechados" element={<Aprovechados />} />
           <Route path="/agua" element={<Agua />} />

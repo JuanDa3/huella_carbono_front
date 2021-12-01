@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InitialMenu from "./InitialMenu";
-import calculates from "../css/calculates.css";
 import axios from "axios";
 import formula from "../images/formula.PNG";
 
-const baseURL = "http://localhost:8080/residuo/calculo";
+const baseURL = "http://localhost:8080/consumo/calculo";
 
-function Solidos() {
+function PapelCarta() {
   const [calculo, setCalculo] = useState("Resultado");
   const [data, setData] = useState({
-    generacion: "",
-    tipoResiduo: "SOLIDOS",
+    cantidad: "",
+    tipoConsumo: "PAPEL CARTA",
     unidadMedida: "kg",
     fuente: "",
     observaciones: "",
@@ -43,22 +42,32 @@ function Solidos() {
         alert("Calculo realizado satisfactoriamente");
       });
   }
+
+  async function getArray() {
+    axios({
+      method: "get",
+      url: baseURL,
+      responseType: "stream",
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
   return (
     <div className="main">
       <InitialMenu disable={"visible"} log={"hidden"} />
       <div className="d-flex">
         <div className="w-50">
-          <h1>Residuos Solidos</h1>
+          <h1>Consumo de Papel Carta</h1>
           <Form.Group className="container mt-5">
             <div className="h-100 d-flex flex-column container-form">
-              <label htmlFor="">Generacion Residuo</label>
+              <label htmlFor="">Cantidad Consumo</label>
 
               <Form.Control
                 style={{ textAlign: "center" }}
-                id="generacion"
+                id="cantidad"
                 onChange={(e) => handle(e)}
                 type="number"
-                placeholder="Ej:80"
+                placeholder="Ingrese la cantidad de resmas: Ej 5"
               />
 
               <label htmlFor="">Fuente</label>
@@ -94,7 +103,7 @@ function Solidos() {
                 style={{ textAlign: "center" }}
                 readOnly
                 type="text"
-                value="0.666"
+                value="0.61"
               />
 
               <label htmlFor="">Observaciones</label>
@@ -135,4 +144,4 @@ function Solidos() {
   );
 }
 
-export default Solidos;
+export default PapelCarta;
