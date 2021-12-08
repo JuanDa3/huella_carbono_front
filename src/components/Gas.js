@@ -5,7 +5,7 @@ import InitialMenu from "./InitialMenu";
 //import calculates from "../css/calculates.css";
 import formula from "../images/formula.PNG";
 
-const baseURL = "http://localhost:8080/consumo/calculo";
+const baseURL = "http://localhost:8000/calculo/consumo/";
 
 function Gas() {
   const [calculo, setCalculo] = useState("Resultado");
@@ -40,6 +40,30 @@ function Gas() {
         console.log(response);
         setCalculo(response);
         alert("Calculo realizado satisfactoriamente");
+      });
+  }
+
+  async function createPost2() {
+    const response = await fetch(baseURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        //"Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        cantidad: 100,
+        fuente: "Activos Fijos",
+        consumo: "GAS",
+        unidad_medida: "Lb/mes",
+        factor_emision: 0.08,
+        observaciones: "tomada del año 2021",
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
       });
   }
 
@@ -94,7 +118,7 @@ function Gas() {
                 style={{ textAlign: "center" }}
                 readOnly
                 type="text"
-                value="kW"
+                value="0.08"
               />
 
               <label htmlFor="">Observaciones</label>
@@ -113,6 +137,10 @@ function Gas() {
             </div>
             <Button onClick={createPost} className="button-enviar">
               Registrar
+            </Button>
+
+            <Button onClick={createPost2} className="button-enviar">
+              Registrar Prueba
             </Button>
           </Form.Group>
         </div>

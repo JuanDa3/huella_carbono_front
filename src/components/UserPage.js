@@ -3,14 +3,16 @@ import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
 import InitialMenu from "./InitialMenu";
 import Button from "react-bootstrap/Button";
 import userpage from "../css/userpage.css";
+import MenuConsumos from "./MenuConsumos";
+import Gas from "./Gas";
 
 function UserPage(props) {
   return (
-    <div className="content-initial-menu">
-      <InitialMenu disable={"visible"} log={"hidden"} />
-      <div className="description">
-        <h1>Seleccione en el menú los calculos que desea efectuar</h1>
+    <div className="content-initial-menu mt-5">
+      <div className="">
+        <h1 style={{ color: "black" }}>Seleccione</h1>
       </div>
+      <MenuConsumos />
     </div>
   );
 }
