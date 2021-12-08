@@ -113,15 +113,15 @@ function MenuConsumos() {
     }
   }
 
-  useEffect(() => {
-    // Actualiza el título del documento usando la API del navegador
-    document.title = "hola mundo";
-  });
+  // useEffect(() => {
+  //   // Actualiza el título del documento usando la API del navegador
+  //   document.title = "hola mundo";
+  // });
 
   async function createPost() {
     const response = await fetch(baseURL, {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
