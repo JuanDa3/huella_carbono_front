@@ -1,0 +1,38 @@
+
+.cards-menu .container-card{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container-card div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.container-card div button{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    width: 50%;
+    height: 30px;
+    font-size: 20px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(12,125,3);
+}
+
+.form_calculo{
+    position: relative
+}
+
+
+
+
+
+
+
+
+
