@@ -3,10 +3,10 @@ import userpage from "../css/menuConsumos.css";
 import { FloatingLabel, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-//const baseURL =
-//"https://fastapi-back-huella-i4p2h5iogq-uc.a.run.app/calculo/consumo/";
+const baseURL =
+  "https://fastapi-back-huella-i4p2h5iogq-uc.a.run.app/calculo/consumo/";
 
-const baseURL = "http://localhost:8000/calculo/consumo/";
+//const baseURL = "http://localhost:8000/calculo/consumo/";
 
 function MenuConsumos() {
   const [calculo, setCalculo] = useState("");
