@@ -13,14 +13,11 @@ function MenuConsumos() {
   const [lblconsumo, setLblconsumo] = useState("Consumos");
   const [unidadmedida, setUnidadmedida] = useState("Seleccione una opcion");
   const [factoremision, setFactoremision] = useState("seleccione una opcion");
-  const [data, setData] = useState();
+  const [consumo, setConsumo] = useState(0);
 
   //variables
-  const [cantconsumo, setCantconsumo] = useState("");
-  const [consumo, setConsumo] = useState("");
-  const [observaciones, setObservaciones] = useState("");
+
   const [factor_emision_valor, setFactor_emision_valor] = useState("");
-  const [fuente, setFuente] = useState("");
   const [listaconsumos, setListaconsumos] = useState([]);
 
   const [postData, setPostData] = useState({
@@ -38,8 +35,6 @@ function MenuConsumos() {
   const handleChange = (e) => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
-
-  console.log(postData);
 
   function menu(e) {
     if (postData.consumo != undefined) {
@@ -121,7 +116,7 @@ function MenuConsumos() {
   async function createPost() {
     const response = await fetch(baseURL, {
       method: "POST",
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -189,10 +184,21 @@ function MenuConsumos() {
             </button>
           </div>
           <div>
-            <a href="/peligrosos">Peligrosos</a>
-            <a href="/solidos">Solidos</a>
-            <a href="/organicos">Organicos</a>
-            <a href="/aprovechados">Aprovechados</a>
+            <button value="PELIGROSOS" onClick={(e) => menu(e)}>
+              Peligrosos
+            </button>
+
+            <button value="SOLIDOS" onClick={(e) => menu(e)}>
+              Solidos
+            </button>
+
+            <button value="ORGANICOS" onClick={(e) => menu(e)}>
+              Organicos
+            </button>
+
+            <button value="APROVECHADOS" onClick={(e) => menu(e)}>
+              Aprovechados
+            </button>
           </div>
         </div>
       </div>
@@ -281,10 +287,6 @@ function MenuConsumos() {
                 </div>
                 <Button onClick={createPost} className="button-enviar">
                   Registrar
-                </Button>
-
-                <Button onClick={createPost2} className="button-enviar">
-                  Registrar Prueba
                 </Button>
               </Form.Group>
             </div>
