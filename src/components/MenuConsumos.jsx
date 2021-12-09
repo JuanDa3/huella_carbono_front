@@ -11,12 +11,11 @@ const baseURL =
 function MenuConsumos() {
   const [calculo, setCalculo] = useState("");
   const [lblconsumo, setLblconsumo] = useState("Consumos");
-  const [unidadmedida, setUnidadmedida] = useState("Seleccione una opcion");
-  const [factoremision, setFactoremision] = useState("seleccione una opcion");
+  const [unidadmedida, setUnidadmedida] = useState("");
+  const [factoremision, setFactoremision] = useState("");
   const [consumo, setConsumo] = useState(0);
 
   //variables
-
   const [factor_emision_valor, setFactor_emision_valor] = useState("");
   const [listaconsumos, setListaconsumos] = useState([]);
 
@@ -46,9 +45,9 @@ function MenuConsumos() {
         setFactor_emision_valor(1.98);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "Lb/mes";
+        postData.factor_emision = "kWtCO2eq";
+        postData.factor_emision_valor = 1.98;
       } else if (e.target.value == "ENERGIA") {
         setLblconsumo("Calculo de consumo de Energia");
         setConsumo(e.target.value);
@@ -57,9 +56,9 @@ function MenuConsumos() {
         setFactor_emision_valor(0.166);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "Kw";
+        postData.factor_emision = "kWtCO2eq";
+        postData.factor_emision_valor = 0.166;
       } else if (e.target.value == "AGUA") {
         setLblconsumo("Calculo de consumo de Agua");
         setConsumo(e.target.value);
@@ -68,9 +67,9 @@ function MenuConsumos() {
         setFactor_emision_valor(0.0835);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "m3";
+        postData.factor_emision = "m3tCO2eq";
+        postData.factor_emision_valor = 0.0835;
       } else if (e.target.value == "PAPEL_CARTA") {
         setLblconsumo("Calculo de consumo de Papel Carta");
         setConsumo(e.target.value);
@@ -79,9 +78,9 @@ function MenuConsumos() {
         setFactor_emision_valor(0.61);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.61;
       } else if (e.target.value == "PAPEL_OFICIO") {
         setLblconsumo("Calculo de consumo de Papel Oficio");
         setConsumo(e.target.value);
@@ -90,9 +89,9 @@ function MenuConsumos() {
         setFactor_emision_valor(0.61);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.61;
       } else if (e.target.value == "GASOLINA") {
         setLblconsumo("Calculo de consumo de Gasolina");
         setConsumo(e.target.value);
@@ -101,9 +100,53 @@ function MenuConsumos() {
         setFactor_emision_valor(1.98);
 
         postData.consumo = e.target.value;
-        postData.unidad_medida = unidadmedida;
-        postData.factor_emision = factoremision;
-        postData.factor_emision_valor = factor_emision_valor;
+        postData.unidad_medida = "m3";
+        postData.factor_emision = "m3tCO2eq";
+        postData.factor_emision_valor = 1.98;
+      } else if (e.target.value == "PELIGROSOS") {
+        setLblconsumo("Calculo de Residuos Peligrosos");
+        setConsumo(e.target.value);
+        setUnidadmedida("kg");
+        setFactoremision("kgtCO2eq");
+        setFactor_emision_valor(0.666);
+
+        postData.consumo = e.target.value;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.666;
+      } else if (e.target.value == "SOLIDOS") {
+        setLblconsumo("Calculo de Residuos Solidos");
+        setConsumo(e.target.value);
+        setUnidadmedida("kg");
+        setFactoremision("kgtCO2eq");
+        setFactor_emision_valor(0.666);
+
+        postData.consumo = e.target.value;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.666;
+      } else if (e.target.value == "ORGANICOS") {
+        setLblconsumo("Calculo de Residuos Organicos");
+        setConsumo(e.target.value);
+        setUnidadmedida("kg");
+        setFactoremision("kgtCO2eq");
+        setFactor_emision_valor(0.666);
+
+        postData.consumo = e.target.value;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.666;
+      } else if (e.target.value == "APROVECHADOS") {
+        setLblconsumo("Calculo de Residuos Aprovechados");
+        setConsumo(e.target.value);
+        setUnidadmedida("kg");
+        setFactoremision("kgtCO2eq");
+        setFactor_emision_valor(0.666);
+
+        postData.consumo = e.target.value;
+        postData.unidad_medida = "kg";
+        postData.factor_emision = "kgtCO2eq";
+        postData.factor_emision_valor = 0.666;
       }
     }
   }
