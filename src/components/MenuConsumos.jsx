@@ -8,12 +8,33 @@ const baseURL =
 
 //const baseURL = "http://localhost:8000/calculo/consumo/";
 
+function Emision({ cantidad, consumo, emision }) {
+  return (
+    <div className="">
+      <table>
+        <tr>
+          <th>Cantidad</th>
+          <th>Consumo</th>
+          <th>Emision</th>
+        </tr>
+        <tr>
+          <td>{cantidad}</td>
+          <td>{consumo}</td>
+          <td>{emision}</td>
+        </tr>
+      </table>
+    </div>
+  );
+}
+
 function MenuConsumos() {
   const [calculo, setCalculo] = useState("");
   const [lblconsumo, setLblconsumo] = useState("Consumos");
   const [unidadmedida, setUnidadmedida] = useState("");
   const [factoremision, setFactoremision] = useState("");
   const [consumo, setConsumo] = useState(0);
+
+  const [emisiones, setEmisiones] = useState([]);
 
   //variables
   const [factor_emision_valor, setFactor_emision_valor] = useState("");
@@ -151,10 +172,22 @@ function MenuConsumos() {
     }
   }
 
-  // useEffect(() => {
-  //   // Actualiza el título del documento usando la API del navegador
-  //   document.title = "hola mundo";
-  // });
+  useEffect(() => {
+    const getEmisiones = async (url) => {
+      let res = await fetch(url),
+        json = await res.json();
+
+      for (let i = 0; i < json.data.length; i++) {
+        let emision = {
+          cantidad: json.data[i].cantidad,
+          consumo: json.data[i].consumo,
+          emision: json.data[i].emision,
+        };
+        setEmisiones((emisiones) => [...emisiones, emision]);
+      }
+    };
+    getEmisiones("http://localhost:8000/calculo/consumo/get-consumos/");
+  }, []);
 
   async function createPost() {
     const response = await fetch(baseURL, {
@@ -169,35 +202,7 @@ function MenuConsumos() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         setCalculo(response);
-      });
-  }
-
-  async function createPost2() {
-    const response = await fetch(baseURL, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        //"Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        cantidad: 190,
-        fuente: "",
-        consumo: "GAS",
-        unidad_medida: "Lb/mes",
-        factor_emision: "kWtCO2eq",
-        factor_emision_valor: 1.98,
-        observaciones: "",
-        emision: 13,
-        usuario: "admin",
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
       });
   }
 
@@ -335,7 +340,7 @@ function MenuConsumos() {
             </div>
             <div className="w-50 d-flex flex-column align-items-center justify-content-center">
               <div className="result">
-                <h3>Resultado Emisión</h3>
+                <h3 style={{ color: "black" }}>Resultado Emisión</h3>
                 <Form.Control
                   style={{ width: "530px", textAlign: "center" }}
                   className=""
@@ -348,6 +353,21 @@ function MenuConsumos() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="container">
+        <h2>Resultados de los consumos</h2>
+        {emisiones.length === 0 ? (
+          <h3>Cargando...</h3>
+        ) : (
+          emisiones.map((el) => (
+            <Emision
+              key={el.emision}
+              cantidad={el.cantidad}
+              consumo={el.consumo}
+              emision={el.emision}
+            />
+          ))
+        )}
       </div>
     </>
   );

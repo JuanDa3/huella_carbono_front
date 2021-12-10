@@ -28,6 +28,19 @@
     position: relative
 }
 
+table{
+    width: 100%;
+    text-align: center;
+}
+
+table th{
+    width: 33%;
+}
+
+table tr{
+    width: 33%;
+}
+
 
 
 
